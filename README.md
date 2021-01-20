@@ -1,24 +1,55 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column         | Type   | Options     |
+| -------------- | ------ | ----------- |
+| email          | string | null: false |
+| password       | string | null: false |
+| password       | string | null: false |
+| first_name     | string | null: false |
+| second_name    | string | null: false |
+| birthday_year  | string | null: false |
+| birthday_month | string | null: false |
+| birthday_day   | string | null: false |
 
-* Ruby version
+has_many :item
+has_many :purchases
 
-* System dependencies
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column       | Type       | Options     |
+| ------------ | ---------- | ----------- |
+| image        |            |             |
+| product_name | text       | null: false |
+| product_text | text       | null: false |
+| category     | string     | null: false |
+| state        | string     | null: false |
+| burden       | string     | null: false |
+| area         | string     | null: false |
+| shiping      | string     | null: false |
+| price        | string     | null: false |
+| user         | references |             |
 
-* Database initialization
+belongs_to :user 
+has_one :purchases
 
-* How to run the test suite
+## purchases テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
+| card_name       | string     | null: false |
+| card_number     | string     | null: false |
+| security_number | string     | null: false |
+| post_number     | string     | null: false |
+| prefecture      | string     | null: false |
+| city            | string     | null: false |
+| address         | string     | null: false |
+| phone_number    | string     | null: false |
+| buy_price       | string     | null: false |
+| user            | references |             |
+| item            | references |             |
 
-* Deployment instructions
-
-* ...
+belongs_to :user 
+belongs_to :item 
