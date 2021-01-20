@@ -2,19 +2,20 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| first_name         | string | null: false |
-| last_name          | string | null: false |
-| huri_first_name    | string | null: false |
-| huri_last_name     | string | null: false |
-| birthday           | date   | null: false |
+| Column             | Type   | Options          |
+| ------------------ | ------ | ---------------- |
+| nickname           | string | null: false      |
+| email              | string | uniqueness: true |
+| encrypted_password | string | null: false      |
+| first_name         | string | null: false      |
+| last_name          | string | null: false      |
+| huri_first_name    | string | null: false      |
+| huri_last_name     | string | null: false      |
+| birthday           | date   | null: false      |
 
 has_many :items
 has_many :purchases
-has_many :deriveries
+
 
 
 
@@ -33,28 +34,28 @@ has_many :deriveries
 | user         | references | foreign_key: true |
 
 belongs_to :user 
-has_one :purchases
+has_one :purchase
 
 ## purchases テーブル
 
 | Column    | Type       | Options           |
 | --------- | ---------- | ----------------- |
-| buy_price | integer     | null: false       |
 | user      | references | foreign_key: true |
 | item      | references | foreign_key: true |
 
 belongs_to :user 
 belongs_to :item 
+has_one :delivery
 
 ## deliveries テーブル
-| Column       | Type       | Options           |
-| ------------ | ---------- | ----------------- |
-| post_number  | integer    | null: false       |
-| prefecture   | string     | null: false       |
-| city         | string     | null: false       |
-| address      | string     | null: false       |
-| building     | string     |                   |
-| phone_number | integer    | null: false       |
-| user         | references | foreign_key: true |
-| purchase     | references | foreign_key: true |
+| Column        | Type       | Options           |
+| ------------- | ---------- | ----------------- |
+| post_number   | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| address       | string     | null: false       |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
+| purchase      | references | foreign_key: true |
 
+belongs_to :purchase
