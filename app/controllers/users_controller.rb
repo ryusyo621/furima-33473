@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
   
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new
+  end
+
   def edit
   end
 
@@ -10,6 +18,7 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
 
   private
 
