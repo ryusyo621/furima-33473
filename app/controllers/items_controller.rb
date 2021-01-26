@@ -3,19 +3,19 @@ class ItemsController < ApplicationController
   def index
   end
   
-  def create
-    @item = Item.new
-  end
+  # def create
+  #   @item = Item.new
+  # end
 
-  def edit
-    @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
-      redirect_to action: :index
-    end
-  end
+  # def edit
+  #   @item = Item.find(params[:id])
+  #   unless current_user.id == @item.user_id
+  #     redirect_to action: :index
+  #   end
+  # end
 
-  def destroy
-  end
+  # def destroy
+  # end
 
   private
 
