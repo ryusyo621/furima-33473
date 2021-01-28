@@ -4,7 +4,7 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :area
-  belongs_to :cstegory
+  belongs_to :category
   belongs_to :state
   belongs_to :burden
   belongs_to :shiping
@@ -12,9 +12,9 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :product_name
     validates :product_text
-    validates :price, format: { with: /\A[0-9]+\z/ }
-  
-  
+    validates :price, format: { with: /\A[0-9]+\z/ }, inclusion: { in: 300..9_999_999 }
+    validates :image
+
     with_options numericality: { other_than: 1 } do
       validates :area_id
       validates :category_id
@@ -23,5 +23,4 @@ class Item < ApplicationRecord
       validates :shiping_id
     end
   end
-
 end

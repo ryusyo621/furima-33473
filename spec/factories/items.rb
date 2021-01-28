@@ -1,13 +1,18 @@
 FactoryBot.define do
   factory :item do
-    product_name {"test"}
-    product_text {"test@test.com"}
-    category_id {"00000f"}
-    state_id {password}
-    burden_id {"山田"}
-    area_id {"太郎"}
-    shiping_id {"ヤマダ"}
-    price {"タロウ"}
+    product_name { 'バッグ' }
+    product_text { '持ち運びも楽' }
+    category_id { 2 }
+    state_id { 2 }
+    burden_id { 2 }
+    area_id { 2 }
+    shiping_id { 2 }
+    price { '1000' }
+
     association :user
+
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_image.jpg'), filename: 'test_image.jpg')
+    end
   end
 end
