@@ -7,11 +7,11 @@ RSpec.describe Item, type: :model do
   describe '出品新規登録' do
     context '出品登録できるとき' do
       it '販売価格は半角数字で保存可能であること' do
-        @item.price = 10000
+        @item.price = 10_000
         expect(@item).to be_valid
       end
       it '価格の範囲が、¥300~¥9,999,999の間であること' do
-        @item.price = 10000
+        @item.price = 10_000
         expect(@item).to be_valid
       end
       it '全て正常で入力内容に問題ない' do
@@ -40,7 +40,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'category_idが1の場合出品ができない' do 
+      it 'category_idが1の場合出品ができない' do
         @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Category must be other than 1')
@@ -50,7 +50,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("State can't be blank")
       end
-      it 'state_idが1の場合出品ができない' do 
+      it 'state_idが1の場合出品ができない' do
         @item.state_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('State must be other than 1')
@@ -60,7 +60,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Burden can't be blank")
       end
-      it 'burden_idが1の場合出品ができない' do 
+      it 'burden_idが1の場合出品ができない' do
         @item.burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Burden must be other than 1')
@@ -70,7 +70,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Area can't be blank")
       end
-      it 'area_idが1の場合出品ができない' do 
+      it 'area_idが1の場合出品ができない' do
         @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Area must be other than 1')
@@ -80,7 +80,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Shiping can't be blank")
       end
-      it 'shiping_idが1の場合出品ができない' do 
+      it 'shiping_idが1の場合出品ができない' do
         @item.shiping_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Shiping must be other than 1')
@@ -96,7 +96,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
       it '価格の範囲が、¥10,000,000以上だと保存できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
