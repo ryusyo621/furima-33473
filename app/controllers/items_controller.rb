@@ -26,7 +26,6 @@ class ItemsController < ApplicationController
   def edit
   end
 
-
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
@@ -36,10 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    end
-    
+    redirect_to root_path if @item.destroy
   end
 
   private
@@ -49,12 +45,11 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:product_name, :product_text, :category_id, :state_id, :burden_id, :area_id, :shiping_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:product_name, :product_text, :category_id, :state_id, :burden_id, :area_id, :shiping_id,
+                                 :price, :image).merge(user_id: current_user.id)
   end
 
   def item_move
-    unless current_user.id == @item.user_id
-      redirect_to items_path,method: :get
-    end
+    redirect_to items_path, method: :get unless current_user.id == @item.user_id
   end
 end
