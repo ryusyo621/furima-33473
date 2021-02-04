@@ -6,10 +6,13 @@ class PurchasesController < ApplicationController
 
 
   def create
+    @item = Item.find(params[:item_id])
     @order = Order.new(purchase_params)
     if @order.valid?
       @order.save
-      redirect_to url: root_path
+      redirect_to root_path
+    else
+      render 'index'
     end
   end
 
