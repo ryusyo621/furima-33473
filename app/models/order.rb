@@ -9,9 +9,10 @@ class Order
     validates :area_id, numericality: { other_than: 1 }
     validates :city
     validates :address
-    validates :building
-    validates :phone_number
+    validates :phone_number, length: {maximum: 11 }, format: {with: /\A[0-9]+\z/ }
   end
+  
+  # validates :building
 
   def save
     # 各テーブルにデータを保存する処理を書く
