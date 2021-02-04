@@ -23,7 +23,7 @@ RSpec.describe Order, type: :model do
       it '郵便番号は、ハイフンなしでは保存できないこと' do
         @order.post_number = '1234567'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Post number is invalid")
+        expect(@order.errors.full_messages).to include('Post number is invalid')
       end
       it '都道府県選択が必須であること' do
         @order.area_id = ''
@@ -52,7 +52,7 @@ RSpec.describe Order, type: :model do
       it '電話番号は、ハイフン無しの12桁では保存できないこと' do
         @order.phone_number = '090123456789'
         @order.valid?
-        expect(@order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        expect(@order.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
     end
   end
