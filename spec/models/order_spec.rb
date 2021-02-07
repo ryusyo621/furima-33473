@@ -10,7 +10,7 @@ RSpec.describe Order, type: :model do
         expect(@order.valid?).to eq true
       end
       it 'ビル名が抜けていても購入できる' do
-        @order.building = ""
+        @order.building = ''
         expect(@order).to be_valid
       end
     end
@@ -37,7 +37,7 @@ RSpec.describe Order, type: :model do
       it '都道府県選択が1だと購入できないこと' do
         @order.area_id = 1
         @order.valid?
-        expect(@order.errors.full_messages).to include("Area must be other than 1")
+        expect(@order.errors.full_messages).to include('Area must be other than 1')
       end
       it '市区町村名が必須であること' do
         @order.city = ''
