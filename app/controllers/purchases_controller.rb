@@ -2,14 +2,13 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :purchase_move, only: :index
   before_action :order_move, only: :index
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order = Order.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = Order.new(purchase_params)
     if @order.valid?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
@@ -26,6 +25,9 @@ class PurchasesController < ApplicationController
   end
 
   private
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
   def purchase_params
     params.require(:order).permit(:post_number, :area_id, :city, :address, :building, :phone_number).merge(
