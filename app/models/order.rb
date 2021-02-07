@@ -13,7 +13,6 @@ class Order
     validates :token
   end
 
-
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
     Delivary.create(post_number: post_number, area_id: area_id, city: city, address: address, building: building,
