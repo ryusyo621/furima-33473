@@ -13,10 +13,8 @@ class Order
     validates :token
   end
 
-  # validates :building
 
   def save
-    # 各テーブルにデータを保存する処理を書く
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
     Delivary.create(post_number: post_number, area_id: area_id, city: city, address: address, building: building,
                     phone_number: phone_number, purchase_id: purchase.id)
