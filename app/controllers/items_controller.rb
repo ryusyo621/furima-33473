@@ -59,8 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def log_in_move
-    if @item.purchase.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.purchase.present?
   end
 end
